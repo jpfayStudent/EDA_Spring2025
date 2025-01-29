@@ -3,6 +3,8 @@ title: "3: Data Exploration"
 author: "Environmental Data Analytics | John Fay & Luana Lima"
 date: "spring 2025"
 output: pdf_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ## Lesson Objectives
@@ -53,6 +55,7 @@ class(USGS.flow.data$datetime)
 
 # Change it to a date object and confirm
 USGS.flow.data$datetime <- as.Date(USGS.flow.data$datetime, format='%Y-%m-%d')
+class(USGS.flow.data$datetime)
 
 ```
 
@@ -108,7 +111,7 @@ An alternate to a histogram is a frequency polygon graph (distributions of value
 ggplot(USGS.flow.data) +
   geom_freqpoly(aes(x = gage.height.mean), bins = 50) +
   geom_freqpoly(aes(x = gage.height.min), bins = 50, color = "darkgray") +
-  geom_freqpoly(aes(x = gage.height.max), bins = 50,  lty = 2) +
+  geom_freqpoly(aes(x = gage.height.max), bins = 50,  lty = 5) +
   scale_x_continuous(limits = c(0, 10))
 
 #
