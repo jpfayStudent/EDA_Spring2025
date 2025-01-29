@@ -151,6 +151,21 @@ Prior to running this, reset your workspace (Session->Restart R) to ensure it ru
 
 ```
 
+```{r Setup-complete}
+# Load packages
+library(dplyr)
+library(ggplot2)
+library(here)
+library(tidyverse)
+library(here)
+
+# Confirm working directory
+here()
+
+# Load the USGS flow data into a data frame
+USGS.flow.data <- read.csv(here("./Data/Raw/USGS_Site02085000_Flow_Raw.csv"),stringsAsFactors = TRUE)
+```
+
 ---
 
 ## EXPLORING YOUR DATASET
@@ -166,7 +181,7 @@ Take a moment to read through the README file associated with the USGS dataset o
 Next, have a look at your dataset. Browse your data in RStudio's viewer. Have a look at the structure of your data. Consider renaming columns. 
 
 ```{r Exploring data}
-View(USGS.flow.data)
+#View(USGS.flow.data)
 # Alternate option: click on data frame in Environment tab
 
 class(USGS.flow.data)
@@ -247,7 +262,9 @@ Alternatively, we can tell R to import it as a factor when we read the data in
 ```{r}
 USGS.flow.data2  <- read.csv(
   file = here("./Data/Raw/USGS_Site02085000_Flow_Raw.csv"),
-  stringsAsFactors = TRUE) 
+  stringsAsFactors = TRUE,
+  colClasses = c('site_no'='factor') ##<-Added by me
+  ) 
 ```
 
 
@@ -287,7 +304,7 @@ USGS.flow.data$datetime <- as.Date(USGS.flow.data$datetime, format = "%m/%d/%y")
 Note that for every date prior to 1969, R has assigned the date in the 2000s rather than the 1900s. This can be fixed with an `ifelse` statement inside a function. Run through the code below and write what is happening in the comment above each line.
 
 ```{r Fixing dates}
-# 
+# Convert datetime back to a string
 USGS.flow.data$datetime <- format(USGS.flow.data$datetime, "%y%m%d")
 
 #
@@ -314,7 +331,7 @@ We just edited our raw dataset into a processed form. We may want to return to t
 ```{r Saving data}
 write.csv(
   USGS.flow.data, 
-  file = here("/Data/Processed/USGS_Site02085000_Flow_Processed.csv"), 
+  file = here("Data/Processed/USGS_Site02085000_Flow_Processed.csv"), 
   row.names=FALSE)
 
 ```
