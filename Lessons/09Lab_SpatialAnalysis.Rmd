@@ -1,7 +1,7 @@
 ---
 title: "Spatial Analysis in R, Lab"
 author: "Environmental Data Analytics | John Fay & Luana Lima"
-date: "Fall 2024"
+date: "spring 2025"
 output: pdf_document
 editor_options:
   chunk_output_type: console
