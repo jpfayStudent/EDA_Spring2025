@@ -154,7 +154,7 @@ https://www.esri.com/arcgis-blog/products/developers/announcements/announcing-ar
 
 We can use this package to access the same data we found above: 
 
-```{r}
+```{r eval=FALSE}
 #The same data source for the manufactured gas plant data
 f_service_url <- paste0('https://services.nconemap.gov/secure/rest/services/NC1Map_Health/FeatureServer')
 
